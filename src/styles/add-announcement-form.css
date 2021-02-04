@@ -1,0 +1,35 @@
+
+.form{
+    border-bottom: 1px solid gray;
+}
+.list-input{
+    width: 85%;
+    height: 30px;
+    margin: 10px 0;
+    background-color: #d8d6e0;
+    border: 4px solid #858094;
+    font-size: 1em;
+    padding-left: 10px;
+    outline: none;
+    border-radius: 5px;
+}
+
+
+.form-btn{
+}
+.form-btn:hover {
+    transition: 0.5s;
+    background-color: #473d53;
+    color: #aea9c8;
+    border: #473d53;
+}
+.title{
+    padding-top: 15px;
+
+}
+.title, .description-input{
+    text-align: left;
+    margin-left: 45px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1.5em;
+}
