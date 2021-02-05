@@ -36,28 +36,29 @@ const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
                 description: edit.description,
                 dateOfUpdate: new Date().toDateString(),
             });
+            setEdit(undefined)
         }
     };
-    const onEditCancel = () => {
+    const onEditDiscard = () => {
         setEdit(undefined)
-    }
+    };
 
     if (edit) {
-        return <AddAnnouncementForm editAnnouncement={edit} onEditSubmit={submitUpdate} onEditDiscard={onEditCancel}/>;
+        return <AddAnnouncementForm editAnnouncement={edit} onEditSubmit={submitUpdate} onEditDiscard={onEditDiscard}/>;
     }
     return (
 
         <li key={announcement.id}>
-            <div className='list-item' onClick={() => setShow(!show)}>
-                <div className={!show?'item-property':'item-property-show'}>
+            <div className='list-item'>
+                <div className={!show?'item-property':'item-property-show'} onClick={() => setShow(!show)}>
                     Title: <span className='item-property-value'>{announcement.title}</span>
                 </div>
                 {show &&
                 <div>
-                    <div className='item-property-show'>
+                    <div className='item-property-show' onClick={() => setShow(!show)}>
                         Description: <span className='item-property-value'>{announcement.description}</span>
                     </div>
-                    <div className='item-property-show'>
+                    <div className='item-property-show' onClick={() => setShow(!show)}>
                         Date of last change: <span
                         className='item-property-value'>{announcement.dateOfUpdate}</span>
                     </div>

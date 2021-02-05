@@ -16,6 +16,17 @@
 
 
 .form-btn{
+    width: 100px;
+    height: 40px;
+    border: 2px solid #6c5c80;
+    color: #473d53;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #9c90ae;
+    border-radius: 5px;
+    outline: none;
+    margin: 10px;
 }
 .form-btn:hover {
     transition: 0.5s;
