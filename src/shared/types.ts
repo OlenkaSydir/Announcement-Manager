@@ -7,7 +7,7 @@ export type Announcement = {
 };
 
 export type AddAnnouncement = (newAnnouncement: Announcement) => void;
-export type RemoveAnnouncement = (id: number) => void;
+export type RemoveAnnouncement = (announcement: Announcement) => void;
 export type SearchAnnouncement = (title: string) => void;
 export type EditAnnouncement = (announcement: Announcement, newAnnouncement: Announcement) => void;
 export type FindSimilarAnnouncement = (announcement: Announcement) => void;

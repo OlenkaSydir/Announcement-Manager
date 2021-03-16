@@ -71,7 +71,7 @@ const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
                     }}
                     /></div>
                     <div className='delete-icon'>
-                    <RiDeleteBinLine onClick={() => removeAnnouncement(announcement.id)}
+                    <RiDeleteBinLine onClick={() => removeAnnouncement(announcement)}
 
                     />
                     </div>

@@ -1,55 +1,98 @@
 import React, {useEffect, useState} from "react";
+import axios from 'axios'
 import {initialAnnouncements} from "./items/initial-announcements";
 import {AnnouncementList} from "./items/announcement-list";
 import {AddAnnouncementForm} from "./items/add-announcement-form";
 import {AddAnnouncement, Announcement, EditAnnouncement, RemoveAnnouncement, SearchAnnouncement} from "../shared/types";
 import '../styles/main-page.css'
 import '../styles/fonts.css'
+import Spinner from "../spinner/spinner";
+import AnnouncementItem from "./items/announcement-item";
 
 
 const MainPage = (): JSX.Element => {
 
-    const [announcements, setAnnouncements] = useState<Array<Announcement>>(initialAnnouncements);
-    const [items, setItems] = useState<Array<Announcement>>(initialAnnouncements);
-
+    const [announcements, setAnnouncements] = useState<Array<Announcement>>([]);
+    const [items, setItems] = useState<Array<Announcement>>([]);
     const [search, setSearch] = useState<string>('');
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const baseUrl = 'https://react-announcement-manager-default-rtdb.firebaseio.com/';
+
+
 
     const Search = (e: any) => {
         setSearch(e.target.value);
     };
 
     const addAnnouncement: AddAnnouncement = newAnnouncement => {
-        let allAnnouncements = [...items, {
+        setIsLoading(true);
+        const newPost = {
             id: newAnnouncement.id,
             title: newAnnouncement.title,
             description: newAnnouncement.description,
             dateOfUpdate: newAnnouncement.dateOfUpdate,
-        }];
-        setAnnouncements(allAnnouncements);
-        setItems(allAnnouncements);
+        }
+        axios.post( baseUrl + '/posts.json', newPost)
+            .then(response => setIsLoading(false))
+            .catch(e => console.log(e));
+        // let allAnnouncements = [...items, newPost];
+        // setAnnouncements(allAnnouncements);
+        // setItems(allAnnouncements);
     };
-    const removeAnnouncement: RemoveAnnouncement = id => {
-        const removeArr = [...items].filter(item => item.id !== id);
-        setAnnouncements(removeArr);
-        setItems(removeArr);
+    const removeAnnouncement: RemoveAnnouncement = item => {
+        setIsLoading(true);
+        const keys = Object.keys(announcements)
+        let number = -1;
+        for (let i = 0; i < keys.length; i++){
+            if (Object.is(announcements[keys[i]], item)){
+                number = i;
+                break;
+            }
+        }
+        console.log(keys[number]);
+        axios.delete(baseUrl + `posts/${keys[number]}.json`)
+            .then(response => console.log(response))
+            .then(()=>setIsLoading(false))
+
+            .catch(e=> console.log(e));
+
+        // setAnnouncements(removeArr);
+        // setItems(removeArr);
     };
 
     const editAnnouncement: EditAnnouncement = (selectedItem, newValue) => {
-        setAnnouncements(prev => prev.map(item => (item.title === selectedItem.title ? newValue : item)));
-        setItems(prev => prev.map(item => (item.title === selectedItem.title ? newValue : item)));
+        const keys2 = Object.keys(announcements)
+        console.log(keys2);
+        let number2 = -1;
+        for (let j = 0; j < keys2.length; j++){
+            if (Object.is(announcements[keys2[j]], selectedItem)){
+                number2 = j;
+                break;
+            }
+        }
+        setIsLoading(true)
+        axios.put(baseUrl + `posts/${keys2[number2]}.json`, newValue)
+            .then(response => console.log(response))
+            .then(()=>setIsLoading(false))
+            .catch(e => console.log(e));
+        // setAnnouncements(prev => prev.map(item => (item.title === selectedItem.title ? newValue : item)));
+        // setItems(prev => prev.map(item => (item.title === selectedItem.title ? newValue : item)));
     };
 
     const searchAnnouncement: SearchAnnouncement = title => {
+        const asArr = Object.values(announcements);
         if (title) {
-            const searchArr = [...items].filter(item => item.title.toLowerCase().includes(title.toLowerCase()));
-            setAnnouncements([...searchArr]);
-        } else if (title === '') {
-            setAnnouncements([...items]);
+            const searchArr = [...asArr].filter(item => item.title.toLowerCase().includes(title.toLowerCase()));
+            setAnnouncements(searchArr);
+        }
+        else if (title === '') {
+            setAnnouncements(asArr);
         }
     };
     const findSimilarAnnouncement = (announcement: Announcement) => {
-        const filterArr = [...announcements].filter(item => item.id !== announcement.id);
-
+        console.log('NON AVAILABLE NOW:)')
+        const asArr = Object.values(announcements)
+        const filterArr = [...asArr].filter(item => item.id !== announcement.id);
         const title = announcement.title;
         const description = announcement.description;
         const similarTitleArr: Announcement[] = [];
@@ -79,12 +122,20 @@ const MainPage = (): JSX.Element => {
 
     const showAll = () => {
         setSearch('');
-        setAnnouncements([...items]);
+        setAnnouncements(items);
     };
 
     useEffect(() => {
         searchAnnouncement(search)
     }, [search]);
+
+    useEffect(()=>{
+        axios.get(baseUrl + 'posts.json', {}).then(response => {
+            setAnnouncements(response.data);
+            setItems(response.data);
+        })//.catch(e => console.log(e))
+    }, [isLoading])
+
 
     return (
         <div className='list-box'>
@@ -107,7 +158,8 @@ const MainPage = (): JSX.Element => {
                        className='list-search'
                        placeholder='Search'/>
             </div>
-
+            {isLoading&&
+            <Spinner/>}
             <AnnouncementList
                 Announcements={announcements}
                 removeAnnouncement={removeAnnouncement}
