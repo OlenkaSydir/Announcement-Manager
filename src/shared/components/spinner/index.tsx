@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/spinner.css'
+import './styled.css'
 const Spinner = (): JSX.Element => {
     return (
             <div className="loader">Loading...</div>

@@ -1,5 +1,13 @@
 import React, {useState} from "react";
-import "../../styles/single-announcement.css";
+import {
+    ListItemWrapper,
+    ButtonWrapper,
+    SimButtonWrapper,
+    LIWrapper,
+    ItemPropertyValueWrapper,
+    AllButtonsWrapper,
+    ItemPropWrapper
+} from "./styled";
 import {
     Announcement,
     EditAnnouncement,
@@ -9,7 +17,7 @@ import {
 } from "../../shared/types";
 import {RiDeleteBinLine} from 'react-icons/ri'
 import {AiOutlineEdit} from 'react-icons/ai'
-import {AddAnnouncementForm} from "./add-announcement-form";
+import {AddAnnouncementForm} from "../add-announcement-form";
 
 
 interface IAnnouncementItem {
@@ -48,42 +56,50 @@ const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
     }
     return (
 
-        <li key={announcement.id}>
-            <div className='list-item'>
-                <div className={!show?'item-property':'item-property-show'} onClick={() => setShow(!show)}>
-                    Title: <span className='item-property-value'>{announcement.title}</span>
-                </div>
+        <LIWrapper key={announcement.id}>
+            <ListItemWrapper>
+                <ItemPropWrapper show={show} onClick={() => setShow(!show)}>
+                    Title:
+                    <ItemPropertyValueWrapper>
+                    {announcement.title}
+                    </ItemPropertyValueWrapper>
+                </ItemPropWrapper>
                 {show &&
                 <div>
-                    <div className='item-property-show' onClick={() => setShow(!show)}>
-                        Description: <span className='item-property-value'>{announcement.description}</span>
-                    </div>
-                    <div className='item-property-show' onClick={() => setShow(!show)}>
-                        Date of last change: <span
-                        className='item-property-value'>{announcement.dateOfUpdate}</span>
-                    </div>
+                    <ItemPropWrapper show={show} onClick={() => setShow(!show)}>
+                        Description:
+                        <ItemPropertyValueWrapper>
+                        {announcement.description}
+                        </ItemPropertyValueWrapper>
+                    </ItemPropWrapper>
+                    <ItemPropWrapper show={show} onClick={() => setShow(!show)}>
+                        Date of last change:
+                        <ItemPropertyValueWrapper>
+                        {announcement.dateOfUpdate}
+                        </ItemPropertyValueWrapper>
+                    </ItemPropWrapper>
                 </div>
                 }
-                <div className={!show?'announcement-buttons':'announcement-buttons-show'} id='announcement-buttons'>
-                    <div className='edit-icon'>
+                <AllButtonsWrapper >
+                    <ButtonWrapper >
                     <AiOutlineEdit onClick={() => {
                         setEdit(announcement)
                     }}
-                    /></div>
-                    <div className='delete-icon'>
+                    /></ButtonWrapper>
+                    <ButtonWrapper >
                     <RiDeleteBinLine onClick={() => removeAnnouncement(announcement)}
 
                     />
-                    </div>
-                    <button className="similar-btn"
+                    </ButtonWrapper>
+                    <SimButtonWrapper
                             onClick={() => {
                                 findSimilarAnnouncement(announcement)
                             }}
                     >Find similar
-                    </button>
-                </div>
-            </div>
-        </li>
+                    </SimButtonWrapper>
+                </AllButtonsWrapper>
+            </ListItemWrapper>
+        </LIWrapper>
     );
 };
 export default AnnouncementItem;

@@ -1,5 +1,4 @@
 import React from "react";
-import axios from 'axios'
 import {
     Announcement,
     EditAnnouncement,
@@ -7,7 +6,7 @@ import {
     RemoveAnnouncement,
     SearchAnnouncement
 } from "../../shared/types";
-import AnnouncementItem from "./announcement-item";
+import AnnouncementItem from "../announcement-item";
 
 interface IAnnouncementList {
     Announcements: Array<Announcement>;
@@ -23,17 +22,6 @@ export const AnnouncementList = (props: IAnnouncementList):JSX.Element => {
 
     return (
         <ul>
-
-            {/*{Announcements.map(announcement => (*/}
-            {/*    <AnnouncementItem*/}
-            {/*        announcement={announcement}*/}
-            {/*        removeAnnouncement={removeAnnouncement}*/}
-            {/*        editAnnouncement={editAnnouncement}*/}
-            {/*        searchAnnouncement={searchAnnouncement}*/}
-            {/*        findSimilarAnnouncement={findSimilarAnnouncement}*/}
-            {/*    />*/}
-            {/*))}*/}
-
             {Announcements&&Object.keys(Announcements).map((keyName) => (
                 <AnnouncementItem
                     announcement={Announcements[keyName]}
