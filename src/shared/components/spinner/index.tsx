@@ -1,8 +1,9 @@
 import React from "react";
-import './styled.css'
+import {LoadingWrapper} from "./styled";
+
 const Spinner = (): JSX.Element => {
     return (
-            <div className="loader">Loading...</div>
-    )
+        <LoadingWrapper>Loading...</LoadingWrapper>
+    );
 }
 export default Spinner;

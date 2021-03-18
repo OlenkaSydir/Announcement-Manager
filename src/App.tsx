@@ -1,6 +1,6 @@
 import React from "react";
 import MainPage from "./components/main-page";
-import './shared/fonts.css'
+import './shared/constants/fonts.css'
 
 const App = (): JSX.Element => {
    return (

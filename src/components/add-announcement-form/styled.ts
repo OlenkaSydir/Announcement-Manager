@@ -49,3 +49,7 @@ export const HeadingWrapper = styled.div`
   font-size: 2.3em;
   border-bottom: 1px solid gray;
 `
+export const ImgWrapper = styled.img`
+  width: 20px;
+  margin-left: 20px;
+`

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
 import {
     ListItemWrapper,
     ButtonWrapper,
@@ -14,9 +14,9 @@ import {
     FindSimilarAnnouncement,
     RemoveAnnouncement,
     SearchAnnouncement
-} from "../../shared/types";
-import {RiDeleteBinLine} from 'react-icons/ri'
-import {AiOutlineEdit} from 'react-icons/ai'
+} from "../../shared/constants/types";
+import {RiDeleteBinLine} from 'react-icons/ri';
+import {AiOutlineEdit} from 'react-icons/ai';
 import {AddAnnouncementForm} from "../add-announcement-form";
 
 
@@ -30,10 +30,15 @@ interface IAnnouncementItem {
 
 
 const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
-    const {announcement, removeAnnouncement, editAnnouncement, findSimilarAnnouncement} = props;
+    const {
+        announcement,
+        removeAnnouncement,
+        editAnnouncement,
+        findSimilarAnnouncement
+    } = props;
 
-    const [edit, setEdit] = useState<Announcement>()
-    const [show, setShow] = useState<boolean>(false)
+    const [edit, setEdit] = useState<Announcement>();
+    const [show, setShow] = useState<boolean>(false);
 
     const submitUpdate = (value: Announcement) => {
         if (edit !== undefined) {
@@ -44,58 +49,74 @@ const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
                 description: edit.description,
                 dateOfUpdate: new Date().toDateString(),
             });
-            setEdit(undefined)
+            setEdit(undefined);
         }
     };
+
     const onEditDiscard = () => {
-        setEdit(undefined)
+        setEdit(undefined);
     };
 
     if (edit) {
-        return <AddAnnouncementForm editAnnouncement={edit} onEditSubmit={submitUpdate} onEditDiscard={onEditDiscard}/>;
+        return <AddAnnouncementForm
+            editAnnouncement={edit}
+            onEditSubmit={submitUpdate}
+            onEditDiscard={onEditDiscard}
+        />;
     }
-    return (
 
+    return (
         <LIWrapper key={announcement.id}>
             <ListItemWrapper>
-                <ItemPropWrapper show={show} onClick={() => setShow(!show)}>
+                <ItemPropWrapper
+                    show={show}
+                    onClick={() => setShow(!show)}
+                >
                     Title:
                     <ItemPropertyValueWrapper>
                     {announcement.title}
                     </ItemPropertyValueWrapper>
                 </ItemPropWrapper>
                 {show &&
-                <div>
-                    <ItemPropWrapper show={show} onClick={() => setShow(!show)}>
-                        Description:
-                        <ItemPropertyValueWrapper>
-                        {announcement.description}
-                        </ItemPropertyValueWrapper>
-                    </ItemPropWrapper>
-                    <ItemPropWrapper show={show} onClick={() => setShow(!show)}>
-                        Date of last change:
-                        <ItemPropertyValueWrapper>
-                        {announcement.dateOfUpdate}
-                        </ItemPropertyValueWrapper>
-                    </ItemPropWrapper>
-                </div>
+                    <div>
+                        <ItemPropWrapper
+                            show={show}
+                            onClick={() => setShow(!show)}
+                        >
+                            Description:
+                            <ItemPropertyValueWrapper>
+                            {announcement.description}
+                            </ItemPropertyValueWrapper>
+                        </ItemPropWrapper>
+                        <ItemPropWrapper
+                            show={show}
+                            onClick={() => setShow(!show)}
+                        >
+                            Date of last change:
+                            <ItemPropertyValueWrapper>
+                            {announcement.dateOfUpdate}
+                            </ItemPropertyValueWrapper>
+                        </ItemPropWrapper>
+                    </div>
                 }
                 <AllButtonsWrapper >
                     <ButtonWrapper >
-                    <AiOutlineEdit onClick={() => {
-                        setEdit(announcement)
+                    <AiOutlineEdit
+                        onClick={() => {
+                            setEdit(announcement)
                     }}
                     /></ButtonWrapper>
                     <ButtonWrapper >
-                    <RiDeleteBinLine onClick={() => removeAnnouncement(announcement)}
-
+                    <RiDeleteBinLine
+                        onClick={() => removeAnnouncement(announcement)}
                     />
                     </ButtonWrapper>
                     <SimButtonWrapper
                             onClick={() => {
                                 findSimilarAnnouncement(announcement)
                             }}
-                    >Find similar
+                    >
+                        Find similar
                     </SimButtonWrapper>
                 </AllButtonsWrapper>
             </ListItemWrapper>

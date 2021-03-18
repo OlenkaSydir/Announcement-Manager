@@ -5,7 +5,7 @@ import {
     FindSimilarAnnouncement,
     RemoveAnnouncement,
     SearchAnnouncement
-} from "../../shared/types";
+} from "../../shared/constants/types";
 import AnnouncementItem from "../announcement-item";
 
 interface IAnnouncementList {
@@ -18,19 +18,27 @@ interface IAnnouncementList {
 
 
 export const AnnouncementList = (props: IAnnouncementList):JSX.Element => {
-    const {Announcements, removeAnnouncement, editAnnouncement, searchAnnouncement, findSimilarAnnouncement} = props;
+    const {
+        Announcements,
+        removeAnnouncement,
+        editAnnouncement,
+        searchAnnouncement,
+        findSimilarAnnouncement
+    } = props;
 
     return (
         <ul>
-            {Announcements&&Object.keys(Announcements).map((keyName) => (
-                <AnnouncementItem
-                    announcement={Announcements[keyName]}
-                    removeAnnouncement={removeAnnouncement}
-                    editAnnouncement={editAnnouncement}
-                    findSimilarAnnouncement={findSimilarAnnouncement}
-                    searchAnnouncement={searchAnnouncement}
-                  />
-            ))}
+            {Announcements &&
+                Object.keys(Announcements).map((keyName) => (
+                    <AnnouncementItem
+                        announcement={Announcements[keyName]}
+                        removeAnnouncement={removeAnnouncement}
+                        editAnnouncement={editAnnouncement}
+                        findSimilarAnnouncement={findSimilarAnnouncement}
+                        searchAnnouncement={searchAnnouncement}
+                    />
+                ))
+            }
         </ul>
     );
 };
