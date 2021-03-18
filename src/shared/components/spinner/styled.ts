@@ -1,4 +1,4 @@
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from 'styled-components'
 
 export const LoadingWrapper = styled.div`
   color: #6d4f98;

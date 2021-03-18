@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const ListItemWrapper = styled.div`
   width: calc(100% - 20px);
@@ -48,7 +48,6 @@ export const LIWrapper = styled.li`
   font-size: 1.2em;
 `
 
-
 export const ItemPropertyValueWrapper = styled.span`
   margin: 10% 2% auto 2%;
 `
@@ -58,8 +57,8 @@ export const AllButtonsWrapper = styled.div`
   display: inline-block;
 `
 export const ItemPropWrapper = styled.div`
-  width: ${props => props.show? 'calc(100% - 20px)' : 'calc(60% - 20px)'}; 
-  ${props=> !props.show ? 'display: inline-block': ''};
+  width: ${props => props.show ? 'calc(100% - 20px)' : 'calc(60% - 20px)'}; 
+  ${props => !props.show ? 'display: inline-block' : ''};
   text-align: left;
   margin-left: 20px;
 `
