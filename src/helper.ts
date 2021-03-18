@@ -29,4 +29,4 @@ export const findSimilar = () => {
 //     }
 // }
 // setAnnouncements(similarArr);
-}
+};

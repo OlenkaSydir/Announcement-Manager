@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   *{
@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   body{
     background-color: #cecbdd;
   }
-`
+`;
 export const ListBoxWrapper = styled.div`
   justify-content: center;
   align-items: center;
@@ -19,14 +19,14 @@ export const ListBoxWrapper = styled.div`
   min-width: 300px;
   border-radius: 10px;
   padding-bottom: 20px;
-`
+`;
 export const ItemListWrapper = styled.div`
   width: calc(100% - 40px);
   padding: 10px 20px ;
   font-family: 'Nunito Sans', sans-serif;
   font-size: 1.7em;
   border-bottom: 1px solid gray;
-`
+`;
 
 export const SearchWrapper = styled.input`
   width: 85%;
@@ -39,8 +39,8 @@ export const SearchWrapper = styled.input`
   padding-left: 10px;
   outline: none;
   border-radius: 5px;
-`
+`;
 export const ImgWrapper = styled.img`
   width: 20px;
   margin-left: 20px;
-`
+`;

@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components';
 
 export const LoadingWrapper = styled.div`
   color: #6d4f98;
@@ -14,7 +14,7 @@ export const LoadingWrapper = styled.div`
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
-`
+`;
 export const load4 = keyframes`
   0%,
   100% {
@@ -41,4 +41,4 @@ export const load4 = keyframes`
   87.5% {
     box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
   }
-`
+`;

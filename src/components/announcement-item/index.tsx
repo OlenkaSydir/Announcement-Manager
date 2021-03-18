@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   ListItemWrapper,
   ButtonWrapper,
@@ -7,17 +7,17 @@ import {
   ItemPropertyValueWrapper,
   AllButtonsWrapper,
   ItemPropWrapper
-} from './styled'
+} from './styled';
 import {
   Announcement,
   EditAnnouncement,
   FindSimilarAnnouncement,
   RemoveAnnouncement,
   SearchAnnouncement
-} from '../../shared/constants/types'
-import { RiDeleteBinLine } from 'react-icons/ri'
-import { AiOutlineEdit } from 'react-icons/ai'
-import { AddAnnouncementForm } from '../add-announcement-form'
+} from '../../shared/constants/types';
+import { RiDeleteBinLine } from 'react-icons/ri';
+import { AiOutlineEdit } from 'react-icons/ai';
+import { AddAnnouncementForm } from '../add-announcement-form';
 
 interface IAnnouncementItem {
     announcement: Announcement;
@@ -33,34 +33,34 @@ const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
     removeAnnouncement,
     editAnnouncement,
     findSimilarAnnouncement
-  } = props
+  } = props;
 
-  const [edit, setEdit] = useState<Announcement>()
-  const [show, setShow] = useState<boolean>(false)
+  const [edit, setEdit] = useState<Announcement>();
+  const [show, setShow] = useState<boolean>(false);
 
   const submitUpdate = (value: Announcement) => {
     if (edit !== undefined) {
-      editAnnouncement(edit, value)
+      editAnnouncement(edit, value);
       setEdit({
         id: edit.id,
         title: edit.title,
         description: edit.description,
         dateOfUpdate: new Date().toDateString()
-      })
-      setEdit(undefined)
+      });
+      setEdit(undefined);
     }
-  }
+  };
 
   const onEditDiscard = () => {
-    setEdit(undefined)
-  }
+    setEdit(undefined);
+  };
 
   if (edit) {
     return <AddAnnouncementForm
             editAnnouncement={edit}
             onEditSubmit={submitUpdate}
             onEditDiscard={onEditDiscard}
-        />
+        />;
   }
 
   return (
@@ -101,7 +101,7 @@ const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
                     <ButtonWrapper >
                     <AiOutlineEdit
                         onClick={() => {
-                          setEdit(announcement)
+                          setEdit(announcement);
                         }}
                     /></ButtonWrapper>
                     <ButtonWrapper >
@@ -111,7 +111,7 @@ const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
                     </ButtonWrapper>
                     <SimButtonWrapper
                             onClick={() => {
-                              findSimilarAnnouncement(announcement)
+                              findSimilarAnnouncement(announcement);
                             }}
                     >
                         Find similar
@@ -119,6 +119,6 @@ const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
                 </AllButtonsWrapper>
             </ListItemWrapper>
         </LIWrapper>
-  )
-}
-export default AnnouncementItem
+  );
+};
+export default AnnouncementItem;

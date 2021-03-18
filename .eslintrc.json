@@ -19,7 +19,9 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "no-undef": "off",
         "no-use-before-define": "off",
-        "no-undef": "warn"
+        "semi": ["error", "always"],
+        "react/jsx-key": "off"
     }
 }

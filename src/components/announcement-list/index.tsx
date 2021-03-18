@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 import {
   Announcement,
   EditAnnouncement,
   FindSimilarAnnouncement,
   RemoveAnnouncement,
   SearchAnnouncement
-} from '../../shared/constants/types'
-import AnnouncementItem from '../announcement-item'
+} from '../../shared/constants/types';
+import AnnouncementItem from '../announcement-item';
 
 interface IAnnouncementList {
     Announcements: Array<Announcement>;
@@ -23,7 +23,7 @@ export const AnnouncementList = (props: IAnnouncementList):JSX.Element => {
     editAnnouncement,
     searchAnnouncement,
     findSimilarAnnouncement
-  } = props
+  } = props;
 
   return (
         <ul>
@@ -39,5 +39,5 @@ export const AnnouncementList = (props: IAnnouncementList):JSX.Element => {
                 ))
             }
         </ul>
-  )
-}
+  );
+};
