@@ -1,4 +1,4 @@
-import uuid from 'react-uuid'
+import uuid from 'react-uuid';
 export type Announcement = {
   id: uuid;
   title: string;
