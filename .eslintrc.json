@@ -20,6 +20,7 @@
     ],
     "rules": {
         "no-undef": "off",
+        "no-unused-vars": "warn",
         "no-use-before-define": "off",
         "semi": ["error", "always"],
         "react/jsx-key": "off"
