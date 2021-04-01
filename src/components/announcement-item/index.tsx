@@ -11,15 +11,15 @@ import {
   Announcement,
   EditAnnouncement,
   RemoveAnnouncement
-} from '../../shared/constants/types';
+} from '../../shared/types';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { AddAnnouncementForm } from '../announcement-form';
 
 interface IAnnouncementItem {
-    announcement: Announcement;
-    remove: RemoveAnnouncement;
-    editAnnouncement: EditAnnouncement;
+  announcement: Announcement;
+  remove: RemoveAnnouncement;
+  editAnnouncement: EditAnnouncement;
 }
 
 export const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
@@ -38,59 +38,59 @@ export const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
 
   if (edit) {
     return <AddAnnouncementForm
-            item={announcement}
-            edit={editAnnouncement}
-            onEditDiscard={onEditDiscard}
-        />;
+              item={announcement}
+              edit={editAnnouncement}
+              onEditDiscard={onEditDiscard}
+           />;
   }
   return (
-        <LIWrapper key={announcement.id}>
-            <ListItemWrapper>
-                <ItemPropWrapper
-                    show={show}
-                    onClick={() => setShow(!show)}
-                >
-                    Title:
-                    <ItemPropertyValueWrapper>
-                    {announcement.title}
-                    </ItemPropertyValueWrapper>
-                </ItemPropWrapper>
-                {show &&
-                    <div>
-                        <ItemPropWrapper
-                            show={show}
-                            onClick={() => setShow(!show)}
-                        >
-                            Description:
-                            <ItemPropertyValueWrapper>
-                            {announcement.description}
-                            </ItemPropertyValueWrapper>
-                        </ItemPropWrapper>
-                        <ItemPropWrapper
-                            show={show}
-                            onClick={() => setShow(!show)}
-                        >
-                            Date of last change:
-                            <ItemPropertyValueWrapper>
-                            {announcement.dateOfUpdate}
-                            </ItemPropertyValueWrapper>
-                        </ItemPropWrapper>
-                    </div>
-                }
-                <AllButtonsWrapper >
-                    <ButtonWrapper >
-                    <AiOutlineEdit
-                        onClick={() => {
-                          setEdit(announcement);
-                        }}
-                    /></ButtonWrapper>
-                    <ButtonWrapper >
-                    <RiDeleteBinLine
-                        onClick={() => remove(announcement.id)}
-                    />
-                    </ButtonWrapper>
-                </AllButtonsWrapper>
-            </ListItemWrapper>
-        </LIWrapper>
+    <LIWrapper key={announcement.id}>
+      <ListItemWrapper>
+        <ItemPropWrapper
+          show={show}
+          onClick={() => setShow(!show)}
+        >
+        Title:
+        <ItemPropertyValueWrapper>
+        {announcement.title}
+        </ItemPropertyValueWrapper>
+        </ItemPropWrapper>
+        {show &&
+          <div>
+            <ItemPropWrapper
+              show={show}
+              onClick={() => setShow(!show)}
+            >
+              Description:
+              <ItemPropertyValueWrapper>
+                {announcement.description}
+              </ItemPropertyValueWrapper>
+            </ItemPropWrapper>
+            <ItemPropWrapper
+                show={show}
+                onClick={() => setShow(!show)}
+            >
+              Date of last change:
+              <ItemPropertyValueWrapper>
+                {announcement.dateOfUpdate}
+              </ItemPropertyValueWrapper>
+            </ItemPropWrapper>
+          </div>
+        }
+        <AllButtonsWrapper >
+          <ButtonWrapper >
+            <AiOutlineEdit
+              onClick={() => {
+                setEdit(announcement);
+              }}
+          /></ButtonWrapper>
+          <ButtonWrapper >
+            <RiDeleteBinLine
+              onClick={() => remove(announcement.id)}
+            />
+          </ButtonWrapper>
+        </AllButtonsWrapper>
+      </ListItemWrapper>
+    </LIWrapper>
   );
 };

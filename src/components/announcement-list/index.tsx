@@ -3,13 +3,13 @@ import {
   Announcement,
   EditAnnouncement,
   RemoveAnnouncement
-} from '../../shared/constants/types';
+} from '../../shared/types';
 import { AnnouncementItem } from '../announcement-item';
 
 interface IAnnouncementList {
-    Announcements: Array<Announcement>;
-    removeAnnouncement: RemoveAnnouncement;
-    editAnnouncement: EditAnnouncement;
+  Announcements: Array<Announcement>;
+  removeAnnouncement: RemoveAnnouncement;
+  editAnnouncement: EditAnnouncement;
 }
 
 export const AnnouncementList = (props: IAnnouncementList):JSX.Element => {
@@ -19,16 +19,16 @@ export const AnnouncementList = (props: IAnnouncementList):JSX.Element => {
     editAnnouncement
   } = props;
   return (
-        <ul>
-             {
-                Announcements.map((announcement) => (
-                    <AnnouncementItem
-                        announcement={announcement}
-                        remove={removeAnnouncement}
-                        editAnnouncement={editAnnouncement}
-                    />
-                ))
-             }
-        </ul>
+    <ul>
+       {
+          Announcements.map((announcement) => (
+            <AnnouncementItem
+              announcement={announcement}
+              remove={removeAnnouncement}
+              editAnnouncement={editAnnouncement}
+            />
+          ))
+       }
+    </ul>
   );
 };

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { baseUrl } from '../shared/constants/urls';
+import { baseUrl } from '../shared/constants';
 import {
   FETCH_ANNOUNCEMENT_FAILURE,
   FETCH_ANNOUNCEMENT_REQUEST,
@@ -8,11 +8,10 @@ import {
   ADD_ANNOUNCEMENT_REQUEST,
   DELETE_ANNOUNCEMENT_REQUEST,
   DELETE_ANNOUNCEMENT_FAILURE,
-  EDIT_ANNOUNCEMENT_REQUEST,
   EDIT_ANNOUNCEMENT_FAILURE,
   SEARCH_ANNOUNCEMENT_REQUEST
 } from './types';
-import { Announcement } from '../shared/constants/types';
+import { Announcement } from '../shared/types';
 
 export const fetchAnnouncementRequest = () => {
   return {
@@ -105,13 +104,6 @@ export const deleteAnnouncement = id => {
         const errorMsg = error.message;
         dispatch(deleteAnnouncementFailure(errorMsg));
       });
-  };
-};
-
-export const editAnnouncementRequest = id => {
-  return {
-    type: EDIT_ANNOUNCEMENT_REQUEST,
-    payload: id
   };
 };
 

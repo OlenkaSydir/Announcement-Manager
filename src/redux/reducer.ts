@@ -11,7 +11,6 @@ import {
 const initialState = {
   loading: true,
   allAnnouncements: [],
-  filteredAnnouncements: [],
   error: '',
   searchTerm: ''
 };
@@ -30,32 +29,18 @@ const announcementReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        allAnnouncements: action.payload,
-        filteredAnnouncements: action.payload,
-        error: ''
+        allAnnouncements: action.payload
       };
     case FETCH_ANNOUNCEMENT_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        allAnnouncements: [],
-        error: action.error
-      };
+    case SEARCH_ANNOUNCEMENT_REQUEST:
     case ADD_ANNOUNCEMENT_FAILURE:
       return {
         ...state,
         loading: false,
-        allAnnouncements: state.allAnnouncements,
         error: action.error
-      };
-    case SEARCH_ANNOUNCEMENT_REQUEST:
-      return {
-        ...state,
-        searchTerm: action.payload
       };
     default:
       return state;
   }
 };
-
 export default announcementReducer;

@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './redux/root-reducer';
 import MainPage from './components/main-page';
-import './shared/constants/fonts.css';
+import './shared/fonts.css';
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 

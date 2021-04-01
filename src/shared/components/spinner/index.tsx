@@ -3,7 +3,7 @@ import { LoadingWrapper } from './styled';
 
 const Spinner = (): JSX.Element => {
   return (
-        <LoadingWrapper>Loading...</LoadingWrapper>
+    <LoadingWrapper>Loading...</LoadingWrapper>
   );
 };
 export default Spinner;
