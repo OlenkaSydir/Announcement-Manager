@@ -2,42 +2,33 @@ import React from 'react';
 import {
   Announcement,
   EditAnnouncement,
-  FindSimilarAnnouncement,
-  RemoveAnnouncement,
-  SearchAnnouncement
-} from '../../shared/constants/types';
-import AnnouncementItem from '../announcement-item';
+  RemoveAnnouncement
+} from '../../shared/types';
+import { AnnouncementItem } from '../announcement-item';
 
 interface IAnnouncementList {
-    Announcements: Array<Announcement>;
-    removeAnnouncement: RemoveAnnouncement;
-    editAnnouncement: EditAnnouncement;
-    searchAnnouncement: SearchAnnouncement;
-    findSimilarAnnouncement: FindSimilarAnnouncement;
+  Announcements: Array<Announcement>;
+  removeAnnouncement: RemoveAnnouncement;
+  editAnnouncement: EditAnnouncement;
 }
 
 export const AnnouncementList = (props: IAnnouncementList):JSX.Element => {
   const {
     Announcements,
     removeAnnouncement,
-    editAnnouncement,
-    searchAnnouncement,
-    findSimilarAnnouncement
+    editAnnouncement
   } = props;
-
   return (
-        <ul>
-            {Announcements &&
-                Object.keys(Announcements).map((keyName) => (
-                    <AnnouncementItem
-                        announcement={Announcements[keyName]}
-                        removeAnnouncement={removeAnnouncement}
-                        editAnnouncement={editAnnouncement}
-                        findSimilarAnnouncement={findSimilarAnnouncement}
-                        searchAnnouncement={searchAnnouncement}
-                    />
-                ))
-            }
-        </ul>
+    <ul>
+       {
+          Announcements.map((announcement) => (
+            <AnnouncementItem
+              announcement={announcement}
+              remove={removeAnnouncement}
+              editAnnouncement={editAnnouncement}
+            />
+          ))
+       }
+    </ul>
   );
 };

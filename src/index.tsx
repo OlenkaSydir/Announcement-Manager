@@ -1,5 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer from './redux/root-reducer';
+import MainPage from './components/main-page';
+import './shared/fonts.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+
+ReactDOM.render(
+  <Provider store={store}>
+    <MainPage />
+  </Provider>, document.getElementById('root')
+);

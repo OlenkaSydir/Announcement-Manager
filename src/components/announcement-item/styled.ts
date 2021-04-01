@@ -23,25 +23,7 @@ export const ButtonWrapper = styled.div`
     color: #231f2f;
   }
 `;
-export const SimButtonWrapper = styled.button`
-  width: 85px;
-  height: 30px;
-  border: 2px solid #6c5c80;
-  color: #473d53;
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  background-color: #9c90ae;
-  border-radius: 5px;
-  outline: none;
-  user-select: none;
-  &:hover{
-    transition: 0.5s;
-    background-color: #473d53;
-    color: #aea9c8;
-    border: #473d53;
-  }
-`;
+
 export const LIWrapper = styled.li`
   list-style-type: none;
   font-family: 'Lato', sans-serif;
@@ -53,8 +35,11 @@ export const ItemPropertyValueWrapper = styled.span`
 `;
 
 export const AllButtonsWrapper = styled.div`
-  width: 40%;
+  width: 20%;
   display: inline-block;
+  margin-left: -20px;
+  position: relative;
+  
 `;
 export const ItemPropWrapper = styled.div`
   width: ${props => props.show ? 'calc(100% - 20px)' : 'calc(60% - 20px)'}; 

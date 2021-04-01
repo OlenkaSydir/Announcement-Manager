@@ -1,20 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 
-export const LoadingWrapper = styled.div`
-  color: #6d4f98;
-  font-size: 20px;
-  margin: 100px auto;
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  position: relative;
-  text-indent: -9999em;
-  -webkit-animation: load4 1.3s infinite linear;
-  animation: load4 1.3s infinite linear;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-`;
 export const load4 = keyframes`
   0%,
   100% {
@@ -41,4 +26,19 @@ export const load4 = keyframes`
   87.5% {
     box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
   }
+`;
+export const LoadingWrapper = styled.div`
+  color: #6d4f98;
+  font-size: 20px;
+  margin: 100px auto;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-animation: ${load4} 1.3s infinite linear;
+  animation: ${load4} 1.3s infinite linear;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
 `;
