@@ -23,6 +23,10 @@
         "no-unused-vars": "warn",
         "no-use-before-define": "off",
         "semi": ["error", "always"],
-        "react/jsx-key": "off"
+        "react/jsx-key": "off",
+        "no-restricted-imports": "off",
+        "no-debugger": "off",
+        "no-unneeded-ternary": "off",
+        "no-mixed-operators": "off"
     }
 }

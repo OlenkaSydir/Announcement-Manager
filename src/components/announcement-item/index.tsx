@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   ListItemWrapper,
   ButtonWrapper,
-  SimButtonWrapper,
   LIWrapper,
   ItemPropertyValueWrapper,
   AllButtonsWrapper,
@@ -11,45 +10,27 @@ import {
 import {
   Announcement,
   EditAnnouncement,
-  FindSimilarAnnouncement,
-  RemoveAnnouncement,
-  SearchAnnouncement
+  RemoveAnnouncement
 } from '../../shared/constants/types';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { AiOutlineEdit } from 'react-icons/ai';
-import { AddAnnouncementForm } from '../add-announcement-form';
+import { AddAnnouncementForm } from '../announcement-form';
 
 interface IAnnouncementItem {
     announcement: Announcement;
-    removeAnnouncement: RemoveAnnouncement;
+    remove: RemoveAnnouncement;
     editAnnouncement: EditAnnouncement;
-    findSimilarAnnouncement: FindSimilarAnnouncement;
-    searchAnnouncement: SearchAnnouncement;
 }
 
-const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
+export const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
   const {
     announcement,
-    removeAnnouncement,
-    editAnnouncement,
-    findSimilarAnnouncement
+    remove,
+    editAnnouncement
   } = props;
 
   const [edit, setEdit] = useState<Announcement>();
   const [show, setShow] = useState<boolean>(false);
-
-  const submitUpdate = (value: Announcement) => {
-    if (edit !== undefined) {
-      editAnnouncement(edit, value);
-      setEdit({
-        id: edit.id,
-        title: edit.title,
-        description: edit.description,
-        dateOfUpdate: new Date().toDateString()
-      });
-      setEdit(undefined);
-    }
-  };
 
   const onEditDiscard = () => {
     setEdit(undefined);
@@ -57,12 +38,11 @@ const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
 
   if (edit) {
     return <AddAnnouncementForm
-            editAnnouncement={edit}
-            onEditSubmit={submitUpdate}
+            item={announcement}
+            edit={editAnnouncement}
             onEditDiscard={onEditDiscard}
         />;
   }
-
   return (
         <LIWrapper key={announcement.id}>
             <ListItemWrapper>
@@ -106,19 +86,11 @@ const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
                     /></ButtonWrapper>
                     <ButtonWrapper >
                     <RiDeleteBinLine
-                        onClick={() => removeAnnouncement(announcement)}
+                        onClick={() => remove(announcement.id)}
                     />
                     </ButtonWrapper>
-                    <SimButtonWrapper
-                            onClick={() => {
-                              findSimilarAnnouncement(announcement);
-                            }}
-                    >
-                        Find similar
-                    </SimButtonWrapper>
                 </AllButtonsWrapper>
             </ListItemWrapper>
         </LIWrapper>
   );
 };
-export default AnnouncementItem;
