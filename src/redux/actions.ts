@@ -35,7 +35,7 @@ export const fetchAnnouncementFailure = error => {
 
 export const fetchAnnouncement = () => {
   return (dispatch) => {
-    dispatch(fetchAnnouncementRequest);
+    dispatch(fetchAnnouncementRequest());
     axios.get(baseUrl + '/posts.json')
       .then(response => {
         const announcements = response.data;
@@ -67,9 +67,10 @@ export const addAnnouncementFailure = error => {
 
 export const addAnnouncement = announcement => {
   return (dispatch) => {
-    dispatch(addAnnouncementRequest);
+    dispatch(addAnnouncementRequest());
     axios.post(baseUrl + '/posts.json', announcement)
-      .then(() => {
+      .then((response) => {
+        console.log(response);
         dispatch(fetchAnnouncement());
       })
       .catch(error => {
@@ -79,10 +80,9 @@ export const addAnnouncement = announcement => {
   };
 };
 
-export const deleteAnnouncementRequest = id => {
+export const deleteAnnouncementRequest = () => {
   return {
-    type: DELETE_ANNOUNCEMENT_REQUEST,
-    payload: id
+    type: DELETE_ANNOUNCEMENT_REQUEST
   };
 };
 export const deleteAnnouncementFailure = error => {
@@ -94,10 +94,9 @@ export const deleteAnnouncementFailure = error => {
 
 export const deleteAnnouncement = id => {
   return (dispatch) => {
-    dispatch(deleteAnnouncementRequest);
+    dispatch(deleteAnnouncementRequest());
     axios.delete(baseUrl + `posts/${id}.json`)
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         dispatch(fetchAnnouncement());
       })
       .catch(error => {
