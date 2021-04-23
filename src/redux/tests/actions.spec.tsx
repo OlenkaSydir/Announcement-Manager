@@ -87,19 +87,34 @@ describe('actions', () => {
   });
 
   describe('add actions', () => {
-    // it('should call addAnnouncementSuccess on successful post request', () => {
-    //   const dispatchMock = jest.fn();
-    //
-    //   mockedAxios.post.mockResolvedValue(addResponseMocked);
-    //   mockedAxios.get.mockResolvedValue(responseMocked);
-    //
-    //   actions.addAnnouncement({
-    //     title: 'Test 3',               ---> вертає Number of calls: 1 тільки ADD_ANNOUNCEMENT_REQUEST
-    //     description: 'test 3'
-    //   })(dispatchMock);
-    //   expect(dispatchMock).toHaveBeenCalledWith(actions.fetchAnnouncementRequest());
-    //   expect(dispatchMock).toHaveBeenCalledWith(actions.fetchAnnouncementSuccess(announcementsMocked));
-    // });
+    it('should call addAnnouncementSuccess on successful post request', () => {
+      const dispatchMock = jest.fn();
+
+      mockedAxios.post.mockResolvedValue(addResponseMocked);
+      mockedAxios.get.mockResolvedValue(responseMocked);
+
+      actions.addAnnouncement({
+        title: 'Test 3', // ---> вертає Number of calls: 1 тільки ADD_ANNOUNCEMENT_REQUEST
+        description: 'test 3'
+      })(dispatchMock);
+      expect(dispatchMock).toHaveBeenCalledWith(actions.addAnnouncementRequest());
+      expect(dispatchMock).toHaveBeenCalledWith(actions.fetchAnnouncement());
+      // expect(dispatchMock).toHaveBeenCalledWith(actions.fetchAnnouncementSuccess(announcementsMocked));
+    });
+    it('should call addAnnouncementSuccess on failed post request', () => {
+      const dispatchMock = jest.fn();
+      const errorMocked = new Error('error');
+      mockedAxios.post.mockRejectedValue(errorMocked.message);
+      mockedAxios.get.mockResolvedValue(errorMocked.message);
+
+      actions.addAnnouncement({
+        title: 'Test 3', // ---> вертає Number of calls: 1 тільки ADD_ANNOUNCEMENT_REQUEST
+        description: 'test 3'
+      })(dispatchMock);
+      expect(dispatchMock).toHaveBeenCalledWith(actions.addAnnouncementRequest());
+      expect(dispatchMock).toHaveBeenCalledWith(actions.addAnnouncementFailure('error'));
+      // expect(dispatchMock).toHaveBeenCalledWith(actions.fetchAnnouncementSuccess(announcementsMocked));
+    });
     it('should call add request action', () => {
       const expectedAction = {
         type: types.ADD_ANNOUNCEMENT_REQUEST
@@ -117,6 +132,28 @@ describe('actions', () => {
   });
 
   describe('delete actions', () => {
+    it('should call deleteAnnouncementSuccess on successful delete request', () => {
+      const dispatchMock = jest.fn();
+
+      mockedAxios.delete.mockResolvedValue(addResponseMocked);
+      mockedAxios.get.mockResolvedValue(responseMocked);
+
+      actions.deleteAnnouncement(1)(dispatchMock);
+      expect(dispatchMock).toHaveBeenCalledWith(actions.deleteAnnouncementRequest());
+      // expect(dispatchMock).toHaveBeenCalledWith(actions.fetchAnnouncement());
+      expect(dispatchMock).toHaveBeenCalledWith(actions.fetchAnnouncementSuccess(announcementsMocked));
+    });
+    it('should call deleteAnnouncementFailure on failed delete request', () => {
+      const dispatchMock = jest.fn();
+      const errorMocked = new Error('error');
+      mockedAxios.delete.mockRejectedValue(errorMocked.message);
+      mockedAxios.get.mockResolvedValue(responseMocked);
+
+      actions.deleteAnnouncement(1)(dispatchMock);
+      expect(dispatchMock).toHaveBeenCalledWith(actions.deleteAnnouncementRequest());
+      // expect(dispatchMock).toHaveBeenCalledWith(actions.fetchAnnouncement());
+      expect(dispatchMock).toHaveBeenCalledWith(actions.deleteAnnouncementFailure('error'));
+    });
     it('should call delete request action', () => {
       const expectedAction = {
         type: types.DELETE_ANNOUNCEMENT_REQUEST
@@ -134,6 +171,34 @@ describe('actions', () => {
   });
 
   describe('edit actions', () => {
+    it('should call editAnnouncementSuccess on successful put request', () => {
+      const dispatchMock = jest.fn();
+
+      mockedAxios.put.mockResolvedValue(addResponseMocked);
+      mockedAxios.get.mockResolvedValue(responseMocked);
+
+      actions.editAnnouncement({
+        title: 'Test 3', // ---> вертає Number of calls: 1 тільки ADD_ANNOUNCEMENT_REQUEST
+        description: 'test 4'
+      })(dispatchMock);
+      // expect(dispatchMock).toHaveBeenCalledWith(actions.editAnnouncement());
+      // expect(dispatchMock).toHaveBeenCalledWith(actions.fetchAnnouncement());
+      expect(dispatchMock).toHaveBeenCalledWith(actions.fetchAnnouncementSuccess(announcementsMocked));
+    });
+    it('should call editAnnouncementFailure on failed put request', () => {
+      const dispatchMock = jest.fn();
+      const errorMocked = new Error('error');
+      mockedAxios.put.mockRejectedValue(errorMocked.message);
+      mockedAxios.get.mockResolvedValue(responseMocked);
+
+      actions.editAnnouncement({
+        title: 'Test 3',
+        description: 'test 4'
+      })(dispatchMock);
+      // expect(dispatchMock).toHaveBeenCalledWith(actions.deleteAnnouncementRequest());
+      // expect(dispatchMock).toHaveBeenCalledWith(actions.fetchAnnouncement());
+      expect(dispatchMock).toHaveBeenCalledWith(actions.editAnnouncementFailure('error'));
+    });
     it('should call edit failure action', () => {
       const error = 'qwerty';
       const expectedAction = {
