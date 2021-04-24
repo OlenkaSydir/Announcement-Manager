@@ -86,24 +86,28 @@ export const AddAnnouncementForm = (props: AddAnnouncementFormProps): JSX.Elemen
               <AddWrapper>Title:</AddWrapper>
               <InputWrapper
                 type="text"
+                data-testid='addTitle'
                 value={announcement.title}
                 onChange={handleTitleChange}
               />
               <AddWrapper>Description:</AddWrapper>
               <InputWrapper
                 type='textarea'
+                data-testid='addDescription'
                 value={announcement.description}
                 onChange={handleDescriptionChange}
               />
               <br/>
               <ButtonWrapper
                 type="submit"
+                role='submitButton'
                 onClick={handleSubmit}
                 disabled={!announcement.title}
               >
                 {isEdit ? 'Edit' : 'Add'}
               </ButtonWrapper>
               <ButtonWrapper
+                role='discardButton'
                 onClick={() => {
                   handleCancel();
                 }}

@@ -51,7 +51,7 @@ export const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
           onClick={() => setShow(!show)}
         >
         Title:
-        <ItemPropertyValueWrapper>
+        <ItemPropertyValueWrapper role='showTitle'>
         {announcement.title}
         </ItemPropertyValueWrapper>
         </ItemPropWrapper>
@@ -62,13 +62,14 @@ export const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
               onClick={() => setShow(!show)}
             >
               Description:
-              <ItemPropertyValueWrapper>
+              <ItemPropertyValueWrapper role='description'>
                 {announcement.description}
               </ItemPropertyValueWrapper>
             </ItemPropWrapper>
             <ItemPropWrapper
                 show={show}
                 onClick={() => setShow(!show)}
+                role='date'
             >
               Date of last change:
               <ItemPropertyValueWrapper>
@@ -79,13 +80,13 @@ export const AnnouncementItem = (props: IAnnouncementItem): JSX.Element => {
         }
         <AllButtonsWrapper >
           <ButtonWrapper >
-            <AiOutlineEdit
+            <AiOutlineEdit role='editButton'
               onClick={() => {
                 setEdit(announcement);
               }}
           /></ButtonWrapper>
           <ButtonWrapper >
-            <RiDeleteBinLine
+            <RiDeleteBinLine role='deleteButton'
               onClick={() => remove(announcement.id)}
             />
           </ButtonWrapper>
